@@ -18,7 +18,7 @@ target_include_directories(Vulkan INTERFACE ${VULKAN_SDK}/Include)
 if(WIN32)
     target_link_libraries(Vulkan INTERFACE ${VULKAN_SDK}/Lib/vulkan-1.lib)
 elseif (APPLE)
-    target_link_libraries(Vulkan INTERFACE ${VULKAN_SDK}/macOS/libMoltenVK.dylib)
+    target_link_libraries(Vulkan INTERFACE ${VULKAN_SDK}/lib/libMoltenVK.dylib)
 endif ()
 
 add_subdirectory(lib/glfw-3.4)
@@ -34,9 +34,9 @@ target_link_libraries(${PROJECT_NAME} Vulkan glfw glm)
 if(APPLE)
     message(STATUS "Configuring for macOS with MoltenVK + Cocoa frameworks")
     target_link_libraries(${PROJECT_NAME}
-    "--framework Cocoa"
-    "--framework IOKit"
-    "--framework CoreFoundation"
+    "-framework Cocoa"
+    "-framework IOKit"
+    "-framework CoreFoundation"
     )
 endif ()
 
