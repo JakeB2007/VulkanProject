@@ -12,7 +12,8 @@ endif ()
 include_directories(${VULKAN_SDK}/Include)
 link_directories(${VULKAN_SDK}/Lib)
 
-add_library(Vulkan INTERFACE)
+add_library(Vulkan INTERFACE
+        WindowHandler/ve_window.hpp)
 target_include_directories(Vulkan INTERFACE ${VULKAN_SDK}/Include)
 
 if(WIN32)
@@ -26,7 +27,10 @@ add_subdirectory(lib/glfw-3.4)
 add_subdirectory(lib/g-truc-glm-a532f5b EXCLUDE_FROM_ALL)
 
 add_executable(${PROJECT_NAME}
-    main.cpp
+        main.cpp
+        WindowHandler/ve_window.hpp
+        WindowHandler/ve_window.cpp
+        ApplicationKernel/app_init.hpp
 )
 
 target_link_libraries(${PROJECT_NAME} Vulkan glfw glm)
@@ -34,9 +38,9 @@ target_link_libraries(${PROJECT_NAME} Vulkan glfw glm)
 if(APPLE)
     message(STATUS "Configuring for macOS with MoltenVK + Cocoa frameworks")
     target_link_libraries(${PROJECT_NAME}
-    "-framework Cocoa"
-    "-framework IOKit"
-    "-framework CoreFoundation"
+            "-framework Cocoa"
+            "-framework IOKit"
+            "-framework CoreFoundation"
     )
 endif ()
 
