@@ -7,6 +7,7 @@
 
 namespace VulkanEngine {
     class application {
-
+    public:
+        int var = 67;
     };
 }
