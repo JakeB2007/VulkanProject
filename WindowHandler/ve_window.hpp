@@ -5,24 +5,24 @@
 #include <string>
 #include "../lib/glfw-3.4/include/GLFW/glfw3.h"
 
-
-#endif
-
 namespace VulkanEngine {
     class VulkanWindow {
     public:
-        VulkanWindow(uint16_t width, uint16_t height, std::string title);
+        VulkanWindow(int w, int h, std::string t);
         ~VulkanWindow();
+        bool shouldClose();
 
     private:
         void initWindow();
 
-        const uint16_t WIDTH;
-        const uint16_t HEIGHT;
+        const int width;
+        const int height;
 
-        std::string windowTitle = "Application Window";
+        std::string windowTitle;
 
         GLFWwindow* window{};
 
     };
 }
+
+#endif

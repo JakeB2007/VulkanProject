@@ -3,11 +3,18 @@
 #define APP_INIT_HPP
 #include "../WindowHandler/ve_window.hpp"
 
-#endif
-
 namespace VulkanEngine {
     class application {
     public:
-        int var = 67;
+        static constexpr int WIDTH = 800;
+        static constexpr int HEIGHT = 600;
+        const std::string title = "Vulkan Engine";
+        void createWindow();
+    private:
+        VulkanWindow vulkanWindow{WIDTH, HEIGHT, title};
+
+
     };
 }
+
+#endif

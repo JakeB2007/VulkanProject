@@ -1,14 +1,9 @@
-#ifndef VE_WINDOW_H
-#define VE_WINDOW_H
-
 #include "ve_window.hpp"
-
-#endif
 #include <glm/gtx/io.hpp>
 
 namespace VulkanEngine {
-    VulkanWindow::VulkanWindow(uint16_t width, uint16_t height, std::string title)
-        : WIDTH(width), HEIGHT(height), windowTitle(title)
+    VulkanWindow::VulkanWindow(int w, int h, std::string t)
+        : width(w), height(h), windowTitle(t)
     {
         initWindow();
     }
@@ -25,7 +20,11 @@ namespace VulkanEngine {
         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
         glfwWindowHint(GLFW_RESIZABLE, GLFW_FALSE);
 
-        window = glfwCreateWindow(WIDTH, HEIGHT, windowTitle.c_str(), nullptr, nullptr);
+        window = glfwCreateWindow(width, height, windowTitle.c_str(), nullptr, nullptr);
+    }
+
+    bool VulkanWindow::shouldClose() {
+        return glfwWindowShouldClose(window);
     }
 
 } //VulkanEngine
